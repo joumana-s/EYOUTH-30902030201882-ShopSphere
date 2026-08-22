@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "https://eyouth-30902030201882-shopsphere-api.vercel.app/api/$1" },
+    { "source": "/api/(.*)", "destination": "https://backend-iota-ashen-33.vercel.app/api/$1" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
