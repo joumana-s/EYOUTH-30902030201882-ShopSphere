@@ -1,8 +1,8 @@
 const prisma = require('../utils/prismaClient');
 
 function buildImageUrl(req) {
-  if (req.file) {
-    return `/uploads/${req.file.filename}`;
+  if (req.file && req.file.url) {
+    return req.file.url;
   }
   if (typeof req.body.image === 'string' && req.body.image.trim() !== '') {
     return req.body.image.trim();

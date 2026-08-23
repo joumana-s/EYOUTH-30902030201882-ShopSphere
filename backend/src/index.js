@@ -8,6 +8,7 @@ const productRoutes = require('./routes/productRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const cartRoutes = require('./routes/cartRoutes');
 const { uploadSingle, handleUploadError } = require('./middleware/upload');
+const isProduction = process.env.VERCEL === '1';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -33,6 +34,10 @@ app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/cart', cartRoutes);
+
+if (!isProduction) {
+  app.use('/uploads', express.static(require('path').resolve(__dirname, '..', 'uploads')));
+}
 
 app.use((err, req, res, next) => {
   console.error('API error:', err.stack || err);
